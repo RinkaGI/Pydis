@@ -52,7 +52,7 @@ from typing import (
 import pydis
 from pydis import app_commands
 from pydis.app_commands.tree import _retrieve_guild_ids
-from discord.utils import MISSING, _is_submodule
+from pydis.utils import MISSING, _is_submodule
 
 from .core import GroupMixin
 from .view import StringView
@@ -88,7 +88,7 @@ if TYPE_CHECKING:
 __all__ = (
     'when_mentioned',
     'when_mentioned_or',
-    'Bot',
+    'DiscordBot',
     'AutoShardedBot',
 )
 
@@ -205,7 +205,7 @@ class BotBase(GroupMixin[None]):
         for event in self.extra_events.get(ev, []):
             self._schedule_event(event, ev, *args, **kwargs)  # type: ignore
 
-    @pydis.utils.copy_doc(pydis.Client.close)
+    @pydis.utils.copy_doc(pydis.GatewayDiscordApp.close)
     async def close(self) -> None:
         for extension in tuple(self.__extensions):
             try:
@@ -1375,7 +1375,7 @@ class BotBase(GroupMixin[None]):
         await self.process_commands(message)
 
 
-class Bot(BotBase, pydis.GatewayDiscordApp):
+class DiscordBot(BotBase, pydis.GatewayDiscordApp):
     """Represents a Discord bot.
 
     This class is a subclass of :class:`discord.Client` and as a result

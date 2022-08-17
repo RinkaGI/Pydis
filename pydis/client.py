@@ -47,7 +47,6 @@ from typing import (
 )
 
 import aiohttp
-import pydis
 
 from .user import User, ClientUser
 from .invite import Invite
@@ -277,7 +276,7 @@ class GatewayDiscordApp:
         The websocket gateway the client is currently connected to. Could be ``None``.
     """
 
-    def __init__(self, *, intents: Intents = pydis.Intents.all(), **options: Any) -> None:
+    def __init__(self, *, intents: Intents = Intents.all(), **options: Any) -> None:
         self.loop: asyncio.AbstractEventLoop = _loop
         # self.ws is set in the connect method
         self.ws: DiscordWebSocket = None  # type: ignore
