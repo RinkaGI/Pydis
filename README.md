@@ -18,7 +18,7 @@ Make your Discord Bot quickly and easily on Python!
 ## Installation
 
 ```bash
-pip install pydis_discord
+pip install pydis-discord=1.0.0
 ```
 
 ## Usage
