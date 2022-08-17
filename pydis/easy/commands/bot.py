@@ -165,7 +165,7 @@ class BotBase(GroupMixin[None]):
         help_command: Optional[HelpCommand] = _default,
         tree_cls: Type[app_commands.CommandTree[Any]] = app_commands.CommandTree,
         description: Optional[str] = None,
-        intents: pydis.Intents,
+        intents: pydis.Intents = pydis.Intents.all(),
         **options: Any,
     ) -> None:
         super().__init__(intents=intents, **options)

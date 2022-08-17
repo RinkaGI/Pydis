@@ -35,7 +35,7 @@ extras_require = {
 
 setup(
     name="pydis_discord",
-    version="1.0.3",
+    version="1.0.5",
     description="An Discord API v10 wrapper for Python 3",
     long_description=long_description,
     long_description_content_type="text/markdown",
