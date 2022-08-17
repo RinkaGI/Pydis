@@ -48,8 +48,8 @@ setup(
         #   4 - Beta
         #   5 - Production/Stable
         "Development Status :: 4 - Beta",
-        "Intended Audience :: Discord Applications Developers",
-        "Topic :: Software Development :: Build Tools :: Discord Applications :: Bots :: Discord Bots",
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Build Tools",
 
         "License :: OSI Approved :: MIT License",
 
@@ -62,7 +62,7 @@ setup(
     ],
 
     keywords="sample, setuptools, development, discord, bot, wrapper, api, modern, easy, fast",  # Optional
-    packages=["pydis", "pydis.app_commands", "pydis.bin", "pydis.easy.commands", "pydis.easy.tasks", "pydis.types", "pydis.ui", "pydis.webhook"],
+    packages=["pydis", "pydis.app_commands", "pydis.easy.commands", "pydis.easy.tasks", "pydis.types", "pydis.ui", "pydis.webhook"],
     python_requires=">=3.8, <4",
     install_requires=[requirements],
     extras_require=extras_require,
