@@ -1,37 +1,14 @@
 from setuptools import setup
-import re
+import pathlib
 
-requirements = []
-with open('requirements.txt') as f:
-  requirements = f.read().splitlines()
+here = pathlib.Path(__file__).parent.resolve()
 
-version = ''
-with open('pydis/__init__.py') as f:
-    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
+# Get the long description from the README file
+long_description = (here / "README.md").read_text(encoding="utf-8")
 
-if not version:
-    raise RuntimeError('version is not set')
-
-if version.endswith(('a', 'b', 'rc')):
-    # append version identifier based on commit count
-    try:
-        import subprocess
-        p = subprocess.Popen(['git', 'rev-list', '--count', 'HEAD'],
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out, err = p.communicate()
-        if out:
-            version += out.decode('utf-8').strip()
-        p = subprocess.Popen(['git', 'rev-parse', '--short', 'HEAD'],
-                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out, err = p.communicate()
-        if out:
-            version += '+g' + out.decode('utf-8').strip()
-    except Exception:
-        pass
-
-readme = ''
-with open('README.rst') as f:
-    readme = f.read()
+# Get requirements
+with open("requirements.txt") as f:
+    requirements = f.read().splitlines()
 
 extras_require = {
     'voice': ['PyNaCl>=1.3.0,<1.6'],
@@ -56,42 +33,42 @@ extras_require = {
     ]
 }
 
-packages = [
-    'pydis',
-    'pydis.types',
-    'pydis.ui',
-    'pydis.webhook',
-    'pydis.app_commands',
-    'pydis.ext.commands',
-    'pydis.ext.tasks',
-]
+setup(
+    name="pydis_discord",
+    version="1.0.0",
+    description="An Discord API v10 wrapper for Python 3",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/RinkaGI/Pydis",
+    author="RinkaDev",
+    author_email="rinkadevoficial@gmail.com",
+    classifiers=[  # Optional
+        # How mature is this project? Common values are
+        #   3 - Alpha
+        #   4 - Beta
+        #   5 - Production/Stable
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Discord Applications Developers",
+        "Topic :: Software Development :: Build Tools :: Discord Applications :: Bots :: Discord Bots",
 
-setup(name='pydis_discord',
-      author='RinkaDev',
-      url='https://github.com/Rapptz/discord.py',
-      version=version,
-      packages=packages,
-      license='MIT',
-      description='A Python wrapper for the Discord API v10',
-      long_description=readme,
-      long_description_content_type="text/x-rst",
-      include_package_data=True,
-      install_requires=requirements,
-      extras_require=extras_require,
-      python_requires='>=3.8.0',
-      classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'License :: OSI Approved :: MIT License',
-        'Intended Audience :: Developers',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
-        'Topic :: Internet',
-        'Topic :: Software Development :: Libraries',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Utilities',
-        'Typing :: Typed',
-      ]
+        "License :: OSI Approved :: MIT License",
+
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3 :: Only",
+    ],
+
+    keywords="sample, setuptools, development, discord, bot, wrapper, api, modern, easy, fast",  # Optional
+    packages=["pydis", "pydis.app_commands", "pydis.bin", "pydis.easy.commands", "pydis.easy.tasks", "pydis.types", "pydis.ui", "pydis.webhook"],
+    python_requires=">=3.8, <4",
+    install_requires=[requirements],
+    extras_require=extras_require,
+    include_package_data=True,
+    project_urls={  # Optional
+        "Bug Reports": "https://github.com/RinkaGI/Pydis/issues",
+        "Source": "https://github.com/RinkaGI/Pydis/",
+    },
 )
