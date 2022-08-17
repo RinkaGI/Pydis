@@ -62,7 +62,15 @@ setup(
     ],
 
     keywords="sample, setuptools, development, discord, bot, wrapper, api, modern, easy, fast",  # Optional
-    packages=["pydis", "pydis.app_commands", "pydis.easy.commands", "pydis.easy.tasks", "pydis.types", "pydis.ui", "pydis.webhook"],
+    packages = [
+    'pydis',
+    'pydis.types',
+    'pydis.ui',
+    'pydis.webhook',
+    'pydis.app_commands',
+    'pydis.easy.commands',
+    'pydis.easy.tasks',
+    ],
     python_requires=">=3.8, <4",
     install_requires=[requirements],
     extras_require=extras_require,
